@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 Pet Shop Inteligente</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Tela de Login/Registro -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h1>🐾 Pet Shop Inteligente</h1>
+                <p>Seu pet merece o melhor! 🐕🐱</p>
+            </div>
+            
+            <!-- Formulário de Login -->
+            <form id="login-form" class="auth-form">
+                <h2>Entrar</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+                <p class="auth-switch">Não tem conta? <span onclick="showRegister()">Registrar</span></p>
+            </form>
+            
+            <!-- Formulário de Registro -->
+            <form id="register-form" class="auth-form hidden">
+                <h2>Criar Conta</h2>
+                <input type="text" id="register-name" placeholder="Nome completo" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Senha" required>
+                <input type="password" id="register-confirm" placeholder="Confirmar senha" required>
+                <button type="submit">Criar Conta</button>
+                <p class="auth-switch">Já tem conta? <span onclick="showLogin()">Entrar</span></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Aplicação Principal (após login) -->
+    <div id="main-app" class="main-app hidden">
+        <header>
+            <h1>🐾 Pet Shop Inteligente</h1>
+            <div class="user-info">
+                <span id="user-name">Usuário</span>
+                <div class="cart-icon">
+                    <span class="cart-count" id="cart-count">0</span>
+                    🛒
+                </div>
+                <button id="logout-btn" class="logout-btn">Sair</button>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- Seção de Cadastro de Pets -->
+            <section class="pets-section">
+                <h2>🐕 Meus Pets</h2>
+                <form id="pet-form" class="pet-form">
+                    <div class="form-row">
+                        <input type="text" id="pet-name" placeholder="Nome do Pet" required>
+                        <input type="number" id="pet-age" placeholder="Idade" min="0" max="30" required>
+                    </div>
+                    <div class="form-row">
+                        <select id="pet-species" required>
+                            <option value="">Espécie</option>
+                            <option value="cachorro">Cachorro</option>
+                            <option value="gato">Gato</option>
+                            <option value="ave">Ave</option>
+                            <option value="peixe">Peixe</option>
+                        </select>
+                        <input type="text" id="pet-breed" placeholder="Raça" required>
+                    </div>
+                    <div class="form-row">
+                        <select id="pet-size" required>
+                            <option value="">Porte</option>
+                            <option value="pequeno">Pequeno</option>
+                            <option value="medio">Médio</option>
+                            <option value="grande">Grande</option>
+                        </select>
+                        <select id="pet-activity" required>
+                            <option value="">Nível de Atividade</option>
+                            <option value="baixo">Baixo</option>
+                            <option value="medio">Médio</option>
+                            <option value="alto">Alto</option>
+                        </select>
+                    </div>
+                    <button type="submit">Adicionar Pet</button>
+                </form>
+                
+                <div class="pets-list" id="pets-list">
+                    <!-- Lista de pets será renderizada aqui -->
+                </div>
+            </section>
+
+            <!-- Seção de Recomendações -->
+            <section class="recommendations-section">
+                <h2>🎯 Recomendações Personalizadas</h2>
+                <div class="recommendations-container" id="recommendations-container">
+                    <div class="no-pets-message">
+                        <p>🐾 Adicione seus pets para receber recomendações personalizadas!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção do Carrinho -->
+            <section class="cart-section">
+                <div class="cart-header">
+                    <h2>🛒 Seu Carrinho</h2>
+                    <button id="clear-cart" class="clear-cart-btn">Limpar</button>
+                </div>
+                
+                <div class="cart-items" id="cart-items">
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <p>Seu carrinho está vazio</p>
+                        <p>Adicione produtos das recomendações!</p>
+                    </div>
+                </div>
+                
+                <div class="cart-total">
+                    <h3>Total: R$ <span id="cart-total">0,00</span></h3>
+                    <button id="checkout-btn" class="checkout-btn" disabled>Finalizar Compra</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>

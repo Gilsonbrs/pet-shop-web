@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Buddy",
+        "type": "Dog",
+        "breed": "Golden Retriever",
+        "age": 3,
+        "price": 500,
+        "description": "A friendly and energetic dog, great with families."
+    },
+    {
+        "id": 2,
+        "name": "Mittens",
+        "type": "Cat",
+        "breed": "Siamese",
+        "age": 2,
+        "price": 300,
+        "description": "A playful cat that loves to cuddle."
+    },
+    {
+        "id": 3,
+        "name": "Coco",
+        "type": "Dog",
+        "breed": "Poodle",
+        "age": 4,
+        "price": 600,
+        "description": "Intelligent and hypoallergenic, perfect for allergy sufferers."
+    },
+    {
+        "id": 4,
+        "name": "Goldie",
+        "type": "Fish",
+        "breed": "Goldfish",
+        "age": 1,
+        "price": 10,
+        "description": "A beautiful goldfish that adds color to any aquarium."
+    },
+    {
+        "id": 5,
+        "name": "Charlie",
+        "type": "Rabbit",
+        "breed": "Holland Lop",
+        "age": 2,
+        "price": 150,
+        "description": "A cute and friendly rabbit, great for kids."
+    }
+]
