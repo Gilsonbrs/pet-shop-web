@@ -411,26 +411,33 @@ function showLogin() {
 // Inicialização da aplicação
 document.addEventListener('DOMContentLoaded', function() {
     authSystem = new AuthSystem();
-    
-    // Verificar se há usuário logado
-    if (currentUser) {
-        authSystem.showMainApp();
-        initializeApp();
-    } else {
-        authSystem.showAuthScreen();
+
+    // Sempre mostrar tela inicial personalizada
+    authSystem.showAuthScreen();
+
+    // Botão "Entrar" acessa a aplicação sem autenticação
+    const enterBtn = document.getElementById('enter-btn');
+    if (enterBtn) {
+        enterBtn.addEventListener('click', function() {
+            // Usuário genérico para navegação
+            currentUser = { name: 'Pai/Mãe de Pet ', email: 'mãeepaidepet@petshop.com' };
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            authSystem.showMainApp();
+            initializeApp();
+        });
     }
 
-    // Event listeners para autenticação
-    document.getElementById('login-form').addEventListener('submit', handleLogin);
-    document.getElementById('register-form').addEventListener('submit', handleRegister);
-    document.getElementById('logout-btn').addEventListener('click', () => authSystem.logout());
-    
-    // Event listeners para pets
+    // Event listeners para logout, pets e carrinho
+    document.getElementById('logout-btn').addEventListener('click', () => {
+        currentUser = null;
+        localStorage.removeItem('currentUser');
+        authSystem.showAuthScreen();
+    });
+
     document.getElementById('pet-form').addEventListener('submit', handleAddPet);
-    
-    // Event listeners para carrinho
+
     document.getElementById('clear-cart').addEventListener('click', () => {
-        if (cart.items.length > 0) {
+        if (cart && cart.items.length > 0) {
             if (confirm('Tem certeza que deseja limpar o carrinho?')) {
                 cart.clearCart();
             }
