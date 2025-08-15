@@ -1,8 +1,6 @@
-// Sistema de Autenticação e Gerenciamento do Pet Shop Inteligente
+// Sistema de Gerenciamento do Pet Shop Inteligente
 
-// Dados de usuários (simulando banco de dados)
-let users = JSON.parse(localStorage.getItem('petShopUsers')) || [];
-let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+let currentUser = { name: 'Pai/Mãe de Pet', email: 'maeepaidepet@petshop.com' };
 
 // Produtos disponíveis para recomendações
 const products = {
@@ -352,44 +350,15 @@ class PetManager {
     }
 }
 
-// Sistema de Autenticação
-class AuthSystem {
-    register(name, email, password) {
-        if (users.find(user => user.email === email)) {
-            throw new Error('Email já cadastrado!');
-        }
+// Funções para mostrar/ocultar telas
+function showAuthScreen() {
+    document.getElementById('auth-screen').classList.remove('hidden');
+    document.getElementById('main-app').classList.add('hidden');
+}
 
-        const user = { name, email, password };
-        users.push(user);
-        localStorage.setItem('petShopUsers', JSON.stringify(users));
-        
-        return user;
-    }
-
-    login(email, password) {
-        const user = users.find(u => u.email === email && u.password === password);
-        if (!user) {
-            throw new Error('Email ou senha incorretos!');
-        }
-        
-        return user;
-    }
-
-    logout() {
-        currentUser = null;
-        localStorage.removeItem('currentUser');
-        this.showAuthScreen();
-    }
-
-    showAuthScreen() {
-        document.getElementById('auth-screen').classList.remove('hidden');
-        document.getElementById('main-app').classList.add('hidden');
-    }
-
-    showMainApp() {
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('main-app').classList.remove('hidden');
-    }
+function showMainApp() {
+    document.getElementById('auth-screen').classList.add('hidden');
+    document.getElementById('main-app').classList.remove('hidden');
 }
 
 // Variáveis globais
@@ -410,28 +379,20 @@ function showLogin() {
 
 // Inicialização da aplicação
 document.addEventListener('DOMContentLoaded', function() {
-    authSystem = new AuthSystem();
+    showAuthScreen();
 
-    // Sempre mostrar tela inicial personalizada
-    authSystem.showAuthScreen();
-
-    // Botão "Entrar" acessa a aplicação sem autenticação
+    // Botão "Entrar" acessa a aplicação
     const enterBtn = document.getElementById('enter-btn');
     if (enterBtn) {
         enterBtn.addEventListener('click', function() {
-            // Usuário genérico para navegação
-            currentUser = { name: 'Pai/Mãe de Pet ', email: 'mãeepaidepet@petshop.com' };
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            authSystem.showMainApp();
+            showMainApp();
             initializeApp();
         });
     }
 
     // Event listeners para logout, pets e carrinho
     document.getElementById('logout-btn').addEventListener('click', () => {
-        currentUser = null;
-        localStorage.removeItem('currentUser');
-        authSystem.showAuthScreen();
+        showAuthScreen();
     });
 
     document.getElementById('pet-form').addEventListener('submit', handleAddPet);
@@ -450,53 +411,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeApp() {
     cart = new ShoppingCart();
     petManager = new PetManager();
-    
     document.getElementById('user-name').textContent = currentUser.name;
-    
     petManager.renderPets();
     petManager.updateRecommendations();
     cart.renderCart();
 }
 
-function handleLogin(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
-    
-    try {
-        currentUser = authSystem.login(email, password);
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        authSystem.showMainApp();
-        initializeApp();
-    } catch (error) {
-        alert(error.message);
-    }
-}
-
-function handleRegister(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('register-name').value;
-    const email = document.getElementById('register-email').value;
-    const password = document.getElementById('register-password').value;
-    const confirm = document.getElementById('register-confirm').value;
-    
-    if (password !== confirm) {
-        alert('As senhas não coincidem!');
-        return;
-    }
-    
-    try {
-        currentUser = authSystem.register(name, email, password);
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        authSystem.showMainApp();
-        initializeApp();
-        alert('Conta criada com sucesso!');
-    } catch (error) {
-        alert(error.message);
-    }
-}
+// ...
 
 function handleAddPet(e) {
     e.preventDefault();
