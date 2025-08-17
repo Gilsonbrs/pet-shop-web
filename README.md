@@ -1,20 +1,13 @@
+
 # 🐾 Pet Shop Inteligente
 
-Uma aplicação web completa de Pet Shop com sistema de login, cadastro de pets e recomendações personalizadas baseadas nas características de cada animal. Desenvolvida em HTML, CSS e JavaScript puro.
-
-## ✨ Funcionalidades Principais
-
-### 🔐 Sistema de Autenticação
-- **Registro de usuários**: Criação de conta com nome, email e senha
-- **Login seguro**: Autenticação com email e senha
-- **Sessão persistente**: Mantém usuário logado entre navegações
-- **Logout**: Encerramento seguro da sessão
+Uma aplicação web de Pet Shop com cadastro de pets, recomendações personalizadas e carrinho de compras, desenvolvida em HTML, CSS e JavaScript puro. Não há mais sistema de login ou autenticação: basta clicar em "Entrar" para acessar todas as funcionalidades.
 
 ### 🐕 Cadastro de Pets
 - **Informações completas**: Nome, idade, espécie, raça, porte e nível de atividade
-- **Múltiplos pets**: Possibilidade de cadastrar vários pets por usuário
+- **Múltiplos pets**: Possibilidade de cadastrar vários pets
 - **Gerenciamento**: Adicionar e remover pets facilmente
-- **Persistência**: Dados salvos por usuário
+- **Persistência**: Dados salvos no navegador
 
 ### 🎯 Recomendações Inteligentes
 - **Personalizadas**: Baseadas nas características do pet
@@ -34,29 +27,28 @@ Uma aplicação web completa de Pet Shop com sistema de login, cadastro de pets 
 
 1. Clone ou baixe este repositório
 2. Abra o arquivo `src/index.html` em qualquer navegador moderno
-3. Crie uma conta ou faça login
-4. Cadastre seus pets e receba recomendações personalizadas!
+3. Clique em "Entrar" e aproveite!
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **HTML5**: Estrutura semântica e acessível
 - **CSS3**: Design responsivo com gradientes e animações
 - **JavaScript ES6+**: Programação orientada a objetos com classes
-- **LocalStorage**: Persistência de dados por usuário
+- **LocalStorage**: Persistência de dados no navegador
 
 ## 📱 Características da Interface
 
 - **Design Responsivo**: Funciona perfeitamente em desktop, tablet e mobile
 - **Interface Moderna**: Gradientes, sombras e animações suaves
-- **UX Intuitiva**: Navegação clara entre login, pets e recomendações
+- **UX Intuitiva**: Navegação clara entre pets, recomendações e carrinho
 - **Feedback Visual**: Notificações e estados visuais claros
 
 ## 🎯 Estrutura do Projeto
 
 ```
-pet-shop-app/
+pet-shop-web/
 ├── src/
-│   ├── index.html          # Página principal com login e app
+│   ├── index.html          # Página principal
 │   ├── styles/
 │   │   └── main.css        # Estilos da aplicação
 │   └── scripts/
@@ -68,20 +60,15 @@ pet-shop-app/
 
 ### Classes Principais
 
-#### AuthSystem
-- Gerenciamento de usuários e autenticação
-- Registro e login de usuários
-- Controle de sessão
-
 #### PetManager
 - Cadastro e gerenciamento de pets
 - Sistema de recomendações inteligentes
-- Persistência de dados por usuário
+- Persistência de dados
 
 #### ShoppingCart
 - Gerenciamento completo do carrinho
 - Controle de quantidades e preços
-- Persistência por usuário
+- Persistência dos itens
 
 ### Sistema de Recomendações
 
@@ -95,13 +82,6 @@ O sistema analisa as características do pet para gerar recomendações personal
 - Cachorro grande com alta atividade → Ração energética + brinquedos interativos
 - Gato pequeno com baixa atividade → Ração light + pelúcias macias
 - Ave média → Gaiola espaçosa + brinquedos suspensos
-
-## 🎨 Design System
-
-- **Cores**: Gradiente roxo/azul (#667eea → #764ba2)
-- **Tipografia**: Segoe UI para melhor legibilidade
-- **Espaçamento**: Sistema consistente de padding/margin
-- **Animações**: Transições suaves e feedback visual
 
 ## 📊 Produtos Disponíveis
 
@@ -127,10 +107,8 @@ O sistema analisa as características do pet para gerar recomendações personal
 
 ## 🔒 Armazenamento
 
-- **Usuários**: `petShopUsers` no localStorage
-- **Sessão atual**: `currentUser` no localStorage
-- **Pets por usuário**: `pets_{email}` no localStorage
-- **Carrinho por usuário**: `cart_{email}` no localStorage
+- **Pets**: `pets_{email}` no localStorage
+- **Carrinho**: `cart_{email}` no localStorage
 
 ## 📱 Responsividade
 
@@ -149,4 +127,4 @@ O sistema analisa as características do pet para gerar recomendações personal
 
 ---
 
-**Desenvolvido como projeto de portfólio** - Demonstração completa de sistema de e-commerce inteligente com recomendações personalizadas para pets.
+**Desenvolvido como projeto de portfólio** - Demonstração de sistema de e-commerce inteligente com recomendações personalizadas para pets.
