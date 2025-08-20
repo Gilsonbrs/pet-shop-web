@@ -40,7 +40,15 @@
                 <h2>🐕 Meus Pets</h2>
                 <form id="pet-form" class="pet-form">
                     <div class="form-row">
-                        <input type="text" id="pet-name" placeholder="Nome do Pet" required>
+                        <!-- Campo alterado -->
+                        <input 
+                            type="text" 
+                            id="pet-name" 
+                            placeholder="Nome do Pet" 
+                            required 
+                            pattern="[A-Za-zÀ-ÿ\s]+" 
+                            title="O nome deve conter apenas letras"
+                        >
                         <input type="number" id="pet-age" placeholder="Idade" min="0" max="30" required>
                     </div>
                     <div class="form-row">

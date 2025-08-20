@@ -423,13 +423,23 @@ function handleAddPet(e) {
     e.preventDefault();
     
     const pet = {
-        name: document.getElementById('pet-name').value,
+        name: document.getElementById('pet-name').value.trim(),
         age: parseInt(document.getElementById('pet-age').value),
         species: document.getElementById('pet-species').value,
-        breed: document.getElementById('pet-breed').value,
+        breed: document.getElementById('pet-breed').value.trim(),
         size: document.getElementById('pet-size').value,
-        activity: document.getElementById('pet-activity').value
+        activity: document.getElementById('pet-activity').value   
     };
+    
+      const lettersRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+    if (!lettersRegex.test(pet.name)) {
+        alert('Por favor, insira apenas letras no campo Nome.');
+        return;
+    }
+    if (!lettersRegex.test(pet.breed)) {
+        alert('Por favor, insira apenas letras no campo Raça.');
+        return;
+    }
     
     petManager.addPet(pet);
     e.target.reset();
