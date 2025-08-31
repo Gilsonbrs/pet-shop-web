@@ -1,0 +1,23 @@
+{
+  "name": "pet-shop-web",
+  "version": "1.0.0",
+  "description": "Uma aplicação web de Pet Shop com cadastro de pets, recomendações personalizadas e carrinho de compras, desenvolvida em HTML, CSS e JavaScript puro. Não há mais sistema de login ou autenticação: basta clicar em \"Entrar\" para acessar todas as funcionalidades.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gilsonbrs/pet-shop-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gilsonbrs/pet-shop-web/issues"
+  },
+  "homepage": "https://github.com/Gilsonbrs/pet-shop-web#readme",
+  "dependencies": {
+    "cypress": "^14.5.4"
+  }
+}

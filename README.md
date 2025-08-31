@@ -1,130 +1,96 @@
 
-# 🐾 Pet Shop Inteligente
+## 🐾 Pet Shop Inteligente
 
-Uma aplicação web de Pet Shop com cadastro de pets, recomendações personalizadas e carrinho de compras, desenvolvida em HTML, CSS e JavaScript puro. Não há mais sistema de login ou autenticação: basta clicar em "Entrar" para acessar todas as funcionalidades.
+Aplicação web de Pet Shop com cadastro de pets, recomendações personalizadas e carrinho de compras, feita em HTML, CSS e JavaScript puro. Não há login: clique em "Entrar" para acessar todas as funcionalidades.
 
-### 🐕 Cadastro de Pets
-- **Informações completas**: Nome, idade, espécie, raça, porte e nível de atividade
-- **Múltiplos pets**: Possibilidade de cadastrar vários pets
-- **Gerenciamento**: Adicionar e remover pets facilmente
-- **Persistência**: Dados salvos no navegador
+### ✨ Principais funcionalidades
+- **Cadastro de Pets**: nome, idade, espécie, raça, porte e nível de atividade, com validação e múltiplos pets.
+- **Recomendações Inteligentes**: produtos por espécie e perfil do pet (porte e atividade).
+- **Carrinho Completo**: adicionar dos cards, alterar quantidade, remover, limpar e finalizar (simulado).
+- **Persistência Local**: dados de pets e carrinho salvos no `localStorage` por usuário fake.
+- **UI Responsiva**: layout moderno e adaptativo para desktop, tablet e mobile.
 
-### 🎯 Recomendações Inteligentes
-- **Personalizadas**: Baseadas nas características do pet
-- **Por espécie**: Cachorro, Gato, Ave e Peixe
-- **Por categoria**: Ração, Brinquedos e Acessórios
-- **Por características**: Porte (pequeno, médio, grande) e nível de atividade (baixo, médio, alto)
+## 🚀 Como executar
 
-### 🛒 Carrinho de Compras
-- **Adição de produtos**: Dos cards de recomendação
-- **Controle de quantidade**: Botões + e - para cada item
-- **Remoção individual**: Botão remover para cada produto
-- **Limpeza total**: Botão para esvaziar carrinho
-- **Totalização**: Cálculo automático do valor total
-- **Finalização**: Processo de checkout simulado
+### Opção rápida (sem Node)
+1. Baixe ou clone o repositório.
+2. Abra `src/index.html` em um navegador moderno.
+3. Clique em "Entrar" e use o app.
 
-## 🚀 Como Executar
+### Opção recomendada (servidor local)
+Use uma extensão como "Live Server" (VS Code) ou qualquer servidor estático para servir a pasta `src/`.
 
-1. Clone ou baixe este repositório
-2. Abra o arquivo `src/index.html` em qualquer navegador moderno
-3. Clique em "Entrar" e aproveite!
+## 🧪 Testes E2E com Cypress
 
-## 🛠️ Tecnologias Utilizadas
+O projeto inclui testes end‑to‑end com Cypress.
 
-- **HTML5**: Estrutura semântica e acessível
-- **CSS3**: Design responsivo com gradientes e animações
-- **JavaScript ES6+**: Programação orientada a objetos com classes
-- **LocalStorage**: Persistência de dados no navegador
+### Pré‑requisitos
+- Node.js 18+ e npm
 
-## 📱 Características da Interface
+### Instalação
+```bash
+npm ci
+```
 
-- **Design Responsivo**: Funciona perfeitamente em desktop, tablet e mobile
-- **Interface Moderna**: Gradientes, sombras e animações suaves
-- **UX Intuitiva**: Navegação clara entre pets, recomendações e carrinho
-- **Feedback Visual**: Notificações e estados visuais claros
+### Abrir o Cypress (modo interativo)
+```bash
+npx cypress open
+```
 
-## 🎯 Estrutura do Projeto
+### Rodar testes em modo headless
+```bash
+npx cypress run
+```
+
+Testes localizam a UI em arquivo local; se necessário, sirva `src/` em `http://localhost:PORT` e ajuste a baseUrl no `cypress.config.js`.
+
+## 🗂️ Estrutura do projeto
 
 ```
 pet-shop-web/
+├── cypress/                 # Testes E2E
+│   ├── e2e/
+│   │   ├── CadastroPet.cy.js
+│   │   └── Principal.cy.js
+│   └── support/
 ├── src/
-│   ├── index.html          # Página principal
+│   ├── index.html           # Página principal
 │   ├── styles/
-│   │   └── main.css        # Estilos da aplicação
+│   │   └── main.css         # Estilos da aplicação
 │   └── scripts/
-│       └── app.js          # Lógica completa do sistema
-└── README.md               # Documentação
+│       └── app.js           # Lógica do sistema (pets, recomendações e carrinho)
+└── README.md
 ```
 
-## 🔧 Arquitetura do Sistema
+## 🔧 Arquitetura e componentes
 
-### Classes Principais
+- **`PetManager`**: gerencia cadastro/remoção de pets, persistência e recomendações por espécie/porte/atividade.
+- **`ShoppingCart`**: gerencia itens do carrinho, quantidades, totalização, persistência e renderização.
+- **Fluxo de telas**: tela inicial com botão "Entrar" → app principal (`showAuthScreen`/`showMainApp`).
 
-#### PetManager
-- Cadastro e gerenciamento de pets
-- Sistema de recomendações inteligentes
-- Persistência de dados
+## 💾 Persistência de dados
+- **Pets**: `pets_{email}` no `localStorage`.
+- **Carrinho**: `cart_{email}` no `localStorage`.
 
-#### ShoppingCart
-- Gerenciamento completo do carrinho
-- Controle de quantidades e preços
-- Persistência dos itens
-
-### Sistema de Recomendações
-
-O sistema analisa as características do pet para gerar recomendações personalizadas:
-
-- **Espécie**: Cachorro, Gato, Ave, Peixe
-- **Porte**: Pequeno, Médio, Grande
-- **Nível de Atividade**: Baixo, Médio, Alto
-
-**Exemplos de recomendações:**
-- Cachorro grande com alta atividade → Ração energética + brinquedos interativos
-- Gato pequeno com baixa atividade → Ração light + pelúcias macias
-- Ave média → Gaiola espaçosa + brinquedos suspensos
-
-## 📊 Produtos Disponíveis
-
-### Cachorros
-- **Rações**: Premium Adulto, Especial Filhotes, Light, Energética
-- **Brinquedos**: Bola resistente, Osso de nylon, Interativo, Pelúcia
-- **Acessórios**: Coleira, Guia retrátil, Caminha, Comedouro automático
-
-### Gatos
-- **Rações**: Premium Adulto, Especial Filhotes, Light, Sabor Peixe
-- **Brinquedos**: Varinha com penas, Bolinhas, Arranhador, Laser
-- **Acessórios**: Caixa de areia, Comedouro elevado, Caminha, Transportadora
-
-### Aves
-- **Rações**: Mistura de sementes, Extrusada
-- **Brinquedos**: Suspenso, Escada de madeira
-- **Acessórios**: Gaiola espaçosa, Bebedouro automático
-
-### Peixes
-- **Rações**: Flocos premium, Granulada
-- **Brinquedos**: Planta artificial, Castelo decorativo
-- **Acessórios**: Aquário 50L, Filtro biológico
-
-## 🔒 Armazenamento
-
-- **Pets**: `pets_{email}` no localStorage
-- **Carrinho**: `cart_{email}` no localStorage
+## 🛠️ Tecnologias
+- **HTML5**, **CSS3**, **JavaScript ES6+**
+- **Cypress** para testes E2E
+- **LocalStorage** para persistência
 
 ## 📱 Responsividade
+- **Desktop**: 3 colunas (Pets, Recomendações, Carrinho)
+- **Tablet**: 2 colunas, carrinho em largura total quando necessário
+- **Mobile**: coluna única, carrinho em destaque
 
-- **Desktop**: Layout em 3 colunas (Pets, Recomendações, Carrinho)
-- **Tablet**: Layout em 2 colunas com carrinho ocupando largura total
-- **Mobile**: Layout em coluna única com carrinho no topo
-
-## 🚀 Próximos Passos Sugeridos
-
-- Integração com API de produtos reais
-- Sistema de avaliações e reviews
+## 🗺️ Roadmap (ideias futuras)
+- Integração com API real de produtos
+- Avaliações/reviews de produtos
 - Histórico de compras
 - Notificações push
-- Integração com veterinários
-- Sistema de agendamento de serviços
+- Agenda de serviços e integração com veterinários
 
----
+## 🤝 Contribuição
+Sugestões e PRs são bem-vindos. Abra uma issue descrevendo a proposta ou envie um PR diretamente.
 
-**Desenvolvido como projeto de portfólio** - Demonstração de sistema de e-commerce inteligente com recomendações personalizadas para pets.
+## 📄 Licença
+Este projeto está sob a licença ISC (ver `package.json`).
